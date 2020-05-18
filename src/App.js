@@ -10,7 +10,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/:username" component={ProfilePage} />
-        <Route exact path="/update/:username" component={UpdateProfilePage} />
+        <Route exact path="/accounts/edit" component={EditProfilePage} />
       </Switch>
     </Router>
   );
