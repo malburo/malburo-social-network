@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
+import ResetPasswordPage from "./pages/ResetPassword/ResetPassword";
 function App() {
   return (
     <Router>
@@ -13,8 +14,13 @@ function App() {
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/accounts/login" component={LoginPage} />
           <Route exact path="/accounts/register" component={RegisterPage} />
-          <Route exact path="/:username" component={LoginPage} />
+          <Route
+            exact
+            path="/accounts/password/reset"
+            component={ResetPasswordPage}
+          />
           <Route exact path="/accounts/edit" component={LoginPage} />
+          <Route exact path="/:username" component={LoginPage} />
         </Switch>
       </Container>
     </Router>
