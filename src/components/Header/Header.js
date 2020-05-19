@@ -9,7 +9,7 @@ const Header = (props) => {
     <header className="header d-flex align-items-center">
       <Container>
         <Row className="d-flex justify-content-between align-items-center">
-          <Col className="col-auto">
+          <Col className="col-3">
             <h3>Malburo</h3>
           </Col>
           <Col className="col-3">
