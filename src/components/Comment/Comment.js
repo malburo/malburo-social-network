@@ -4,7 +4,7 @@ const Comment = (props) => {
   return (
     <div className="Comment">
       <a href="#">{props.username}</a>
-      <p>{props.children}</p>
+      {props.children}
     </div>
   );
 };

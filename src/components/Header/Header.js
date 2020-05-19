@@ -1,7 +1,7 @@
 import React from "react";
-import Search from "./Search";
-import Icon from "./Icon";
-import Avatar from "./Avatar";
+import Search from "../Search/Search";
+import Icon from "../Icon/Icon";
+import Avatar from "../Avatar/Avatar";
 import "./Header.css";
 import { Container, Row, Col } from "reactstrap";
 const Header = (props) => {

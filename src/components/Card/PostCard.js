@@ -1,8 +1,8 @@
 import React from "react";
 import "./PostCard.css";
-import Icon from "./Icon/Icon";
-import Avatar from "./Avatar/Avatar";
-import Comment from "./Comment/Comment";
+import Icon from "../Icon/Icon";
+import Avatar from "../Avatar/Avatar";
+import Comment from "../Comment/Comment";
 const PostCard = (props) => {
   return (
     <div className="PostCard">
