@@ -20,7 +20,7 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected");
 });
 mongoose.set("useFindAndModify", false);
-
+mongoose.set("useCreateIndex", true);
 // app.use("/api", homeRouter);
 app.use("/api/accounts", accountRouter);
 

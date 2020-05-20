@@ -7,9 +7,10 @@ module.exports.postLogin = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json({ message: "Email hoặc username không đúng" });
+        .json({ message: "Email hoặc username không tồn tại" });
     }
-    if (user.password !== req.body.password) {
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) {
       return res.status(400).json({ message: "password không đúng" });
     }
     res.json(user);
