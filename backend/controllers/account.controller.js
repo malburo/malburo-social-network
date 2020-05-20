@@ -35,3 +35,15 @@ module.exports.postRegister = async (req, res) => {
     res.status(400).json(`Error: ${e}`);
   }
 };
+
+module.exports.postResetPassword = async (req, res) => {
+  try {
+    let user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(400).json({ message: "Email không tồn tại" });
+    }
+    res.json({ message: "Đã gửi email" });
+  } catch (e) {
+    res.status(400).json(`Error: ${e}`);
+  }
+};
