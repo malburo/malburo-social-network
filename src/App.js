@@ -2,12 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
-
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import ResetPasswordPage from "./pages/ResetPassword/ResetPassword";
 import NewsfeedPage from "./pages/Newsfeed/Newsfeed";
+
 function App() {
   return (
     <Router>

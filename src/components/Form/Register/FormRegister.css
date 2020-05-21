@@ -1,5 +1,6 @@
 .FormRegister,
-.login {
+.FormRegister__footer {
+  box-sizing: border-box;
   width: 350px;
   padding: 20px 40px;
   border: 1px solid #ccc;
@@ -15,7 +16,7 @@
 }
 .FormRegister__item {
   font-size: 12px;
-  box-sizing: border-box;
+
   background: rgba(var(--b3f, 250, 250, 250), 1);
 }
 .FormRegister__item:focus {
@@ -30,6 +31,6 @@
 .roles {
   color: rgba(var(--f52, 142, 142, 142), 1);
 }
-.login {
+.FormRegister__footer {
   margin-top: 10px;
 }

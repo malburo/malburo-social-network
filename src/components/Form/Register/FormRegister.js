@@ -1,7 +1,15 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  FormFeedback,
+  InputGroup,
+} from "reactstrap";
 import "./FormRegister.css";
 const FormRegister = (props) => {
+  const { onChangeHandler, onSubmit, errors, isComplete } = props;
   return (
     <div className="wrap">
       <div className="FormRegister">
@@ -9,44 +17,70 @@ const FormRegister = (props) => {
         <p className="FormRegister__subtitle">
           Đăng ký để xem ảnh và video từ bạn bè.
         </p>
-        <Form className="FormRegister__input">
+        <Form className="FormRegister__input" onSubmit={onSubmit} method="POST">
           <FormGroup>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="FormRegister__item"
-            />
+            <InputGroup>
+              <Input
+                type="text"
+                name="fullname"
+                id="fullname"
+                placeholder="Tên đầy đủ"
+                className="FormRegister__item"
+                onChange={onChangeHandler}
+                invalid={errors.fullname}
+              />
+              <FormFeedback invalid={true}>{errors.fullname}</FormFeedback>
+            </InputGroup>
           </FormGroup>
           <FormGroup>
-            <Input
-              type="text"
-              name="fullname"
-              id="fullname"
-              placeholder="Tên đầy đủ"
-              className="FormRegister__item"
-            />
+            <InputGroup>
+              <Input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Tên người dùng"
+                className="FormRegister__item"
+                onChange={onChangeHandler}
+                invalid={errors.username}
+              />
+              <FormFeedback invalid={true}>{errors.username}</FormFeedback>
+            </InputGroup>
           </FormGroup>
           <FormGroup>
-            <Input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Tên người dùng"
-              className="FormRegister__item"
-            />
+            <InputGroup>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                className="FormRegister__item"
+                onChange={onChangeHandler}
+                invalid={errors.email}
+              />
+              <FormFeedback invalid={true}>{errors.email}</FormFeedback>
+            </InputGroup>
           </FormGroup>
           <FormGroup>
-            <Input
-              type="password"
-              name="password"
-              id="examplePassword"
-              placeholder="Mật khẩu"
-              className="FormRegister__item"
-            />
+            <InputGroup>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="Mật khẩu"
+                className="FormRegister__item"
+                onChange={onChangeHandler}
+                invalid={errors.password}
+              />
+              <FormFeedback invalid={true}>{errors.password}</FormFeedback>
+            </InputGroup>
           </FormGroup>
-          <Button color="primary" block className="FormRegister__btn">
+          {isComplete && <p>Đăng kí thành công</p>}
+          <Button
+            type="submit"
+            color="primary"
+            block
+            className="FormRegister__btn"
+          >
             Đăng Ký
           </Button>
           <div className="roles">
@@ -57,7 +91,7 @@ const FormRegister = (props) => {
           </div>
         </Form>
       </div>
-      <div className="login">
+      <div className="FormRegister__footer">
         <span>Bạn có tài khoản? </span>
         <a href="#">Đăng Nhập</a>
       </div>

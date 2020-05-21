@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./ForgotPassword.css";
 const ForgotPassword = (props) => {
   return (
@@ -32,7 +32,7 @@ const ForgotPassword = (props) => {
           </Button>
         </Form>
       </div>
-      <div className="login">
+      <div className="FormForgotPassword__footer">
         <a href="#">Quay lại đăng Nhập</a>
       </div>
     </div>

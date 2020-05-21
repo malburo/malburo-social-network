@@ -1,5 +1,5 @@
 .FormLogin,
-.register {
+.FormLogin__footer {
   width: 350px;
   padding: 20px 40px;
   border: 1px solid #ccc;
@@ -30,6 +30,6 @@
   margin-bottom: 20px;
 }
 
-.register {
+.FormLogin__footer {
   margin-top: 10px;
 }

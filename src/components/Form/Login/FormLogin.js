@@ -31,7 +31,7 @@ const FormLogin = (props) => {
           <a href="#">Quên mật khẩu?</a>
         </Form>
       </div>
-      <div className="register">
+      <div className="FormLogin__footer">
         <span>Bạn không có tài khoản? </span>
         <a href="#">Đăng ký</a>
       </div>
