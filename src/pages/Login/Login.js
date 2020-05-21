@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import FormLogin from "../../components/Form/Login/FormLogin";
 import { Container, Row, Col } from "reactstrap";
 
@@ -53,12 +54,12 @@ class LoginPage extends React.Component {
   };
   handlerSubmit = (e) => {
     e.preventDefault();
-    const { fullname, username, email, password } = this.state;
+    const { username, password } = this.state;
 
     let formErrors = { ...this.state.formErrors };
 
     if (username === null) {
-      formErrors.username = "Xin hãy cung cấp username hoặc password";
+      formErrors.username = "Xin hãy cung cấp username!";
     }
     if (password === null) {
       formErrors.password = "Xin hãy cung cấp password!";
@@ -68,14 +69,15 @@ class LoginPage extends React.Component {
     });
 
     if (formValid(this.state)) {
-      const newUser = { username, password };
-      // axios
-      //   .post("http://localhost:8080/api/accounts/register", newUser)
-      //   .then((res) => console.log(res.data));
+      const User = { username, password };
       this.setState({
         isComplete: true,
       });
       e.target.reset();
+      axios
+        .post("http://localhost:8080/api/accounts/login", User)
+        .then((res) => console.log(res.data))
+        .catch((e) => console.log(e));
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }

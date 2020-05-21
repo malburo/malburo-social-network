@@ -87,9 +87,10 @@ class RegisterPage extends React.Component {
 
     if (formValid(this.state)) {
       const newUser = { fullname, username, email, password };
-      // axios
-      //   .post("http://localhost:8080/api/accounts/register", newUser)
-      //   .then((res) => console.log(res.data));
+      console.log(newUser);
+      axios
+        .post("http://localhost:8080/api/accounts/register", newUser)
+        .then((res) => console.log(res.data));
       this.setState({
         isComplete: true,
       });

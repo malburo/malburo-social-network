@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -93,7 +94,7 @@ const FormRegister = (props) => {
       </div>
       <div className="FormRegister__footer">
         <span>Bạn có tài khoản? </span>
-        <a href="#">Đăng Nhập</a>
+        <Link to="/accounts/login">Đăng nhập</Link>
       </div>
     </div>
   );

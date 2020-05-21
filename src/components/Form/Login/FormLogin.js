@@ -1,5 +1,6 @@
 import React from "react";
 import "./FormLogin.css";
+import { Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -21,7 +22,7 @@ const FormLogin = (props) => {
                 type="text"
                 name="username"
                 id="username"
-                placeholder="Tên người dùng hoặc email"
+                placeholder="Tên người dùng"
                 className="FormLogin__email"
                 onChange={onChangeHandler}
                 invalid={errors.username}
@@ -34,7 +35,7 @@ const FormLogin = (props) => {
               <Input
                 type="password"
                 name="password"
-                id="examplePassword"
+                id="password"
                 placeholder="Mật khẩu"
                 className="FormLogin__password"
                 onChange={onChangeHandler}
@@ -47,12 +48,12 @@ const FormLogin = (props) => {
           <Button color="primary" block className="FormLogin__btn">
             Đăng nhập
           </Button>
-          <a href="#">Quên mật khẩu?</a>
+          <Link to="/accounts/password/reset">Quên mật khẩu?</Link>
         </Form>
       </div>
       <div className="FormLogin__footer">
         <span>Bạn không có tài khoản? </span>
-        <a href="#">Đăng ký</a>
+        <Link to="/accounts/register">Đăng ký</Link>
       </div>
     </div>
   );

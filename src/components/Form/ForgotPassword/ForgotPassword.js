@@ -1,5 +1,6 @@
 import React from "react";
 import "./ForgotPassword.css";
+import { Link } from "react-router-dom";
 import {
   Button,
   Form,
@@ -52,7 +53,7 @@ const ForgotPassword = (props) => {
         </Form>
       </div>
       <div className="FormForgotPassword__footer">
-        <a href="#">Quay lại đăng Nhập</a>
+        <Link to="/accounts/login">Quay lại đăng Nhập</Link>
       </div>
     </div>
   );
