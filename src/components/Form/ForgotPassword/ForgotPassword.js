@@ -1,7 +1,16 @@
 import React from "react";
-import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./ForgotPassword.css";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  InputGroup,
+  FormFeedback,
+} from "reactstrap";
+
 const ForgotPassword = (props) => {
+  const { onChangeHandler, onSubmit, errors, isComplete } = props;
   return (
     <div className="wrap">
       <div className="FormForgotPassword">
@@ -17,16 +26,26 @@ const ForgotPassword = (props) => {
           Hãy nhập tên người dùng hoặc email của bạn và chúng tôi sẽ gửi cho bạn
           liên kết để truy cập lại vào tài khoản.
         </p>
-        <Form className="FormForgotPassword__input">
+        <Form
+          className="FormForgotPassword__input"
+          onSubmit={onSubmit}
+          method="POST"
+        >
           <FormGroup>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="FormForgotPassword__item"
-            />
+            <InputGroup>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                className="FormForgotPassword__item"
+                onChange={onChangeHandler}
+                invalid={errors.email}
+              />
+              <FormFeedback invalid={true}>{errors.email}</FormFeedback>
+            </InputGroup>
           </FormGroup>
+          {isComplete && <p>Email đã được gửi!</p>}
           <Button color="primary" block className="FormForgotPassword__btn">
             Gửi liên kết đăng nhập
           </Button>
