@@ -23,9 +23,12 @@ mongoose.connection.on("connected", () => {
 });
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
+
 // app.use("/api", homeRouter);
 app.use("/api/accounts", accountRouter);
-
+app.use(function (err, req, res, next) {
+  res.json(err);
+});
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

@@ -9,16 +9,6 @@ import NewsfeedPage from "./pages/Newsfeed/Newsfeed";
 
 function App() {
   return (
-    // phan route em để ở đây dc ko a
-    // tam tohi ban de day van ok khong sao ca. Nhu the naoy la ok lam roi ,ok anh hehe.   
-    // ban ok roi thi minh lam tiep day hehee, dạ e cảm ơn anh nhiều lắm
-    // ban nho up len git nha :D , dạ em up hằng ngày mà anh.
-    // deploy len heroku & firebase roi link vo github. Nho setup readme.md cho nguoi khac vo doc :D 
-    // nhung project nay co the danh cho nhung ban khoaa sau tham khao do ban :D WOW TUYET VAY ANH :D
-    // khong biet co submit vo do duocc khog :v, mấy bài đó em chưa biết làm luon
-    // tap lam cai nho truoc ban ak
-    // ban co them vo day cung duoc ne, giờ em mới biet tinh năng này luon á anh :D
-    // thoi tre roi ban hoc ngur som nha, dạ bye anh, chúc anh buổi tối vui vẻ
     <Router>
       <div style={{ minHeight: "100vh" }} className="App">
         <Switch>

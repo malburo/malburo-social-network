@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import FormLogin from "../../components/Form/Login/FormLogin";
+import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 const formValid = ({ formErrors, ...rest }) => {
@@ -29,7 +30,7 @@ class LoginPage extends React.Component {
         username: "",
         password: "",
       },
-      isComplete: false,
+      isLogin: false,
     };
   }
   handlerChange = (e) => {
@@ -70,19 +71,28 @@ class LoginPage extends React.Component {
 
     if (formValid(this.state)) {
       const User = { username, password };
-      this.setState({
-        isComplete: true,
-      });
-      e.target.reset();
       axios
         .post("http://localhost:8080/api/accounts/login", User)
-        .then((res) => console.log(res.data))
-        .catch((e) => console.log(e));
+        .then((res) => {
+          localStorage.accessToken = res.data.accessToken;
+          this.setState({
+            isLogin: true,
+          });
+        })
+        .catch((err) => {
+          formErrors = { ...err.response.data };
+          this.setState({
+            formErrors,
+          });
+        });
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
   render() {
+    if (this.state.isLogin) {
+      return <Redirect to={`/`} />;
+    }
     return (
       <Container>
         <Row>
@@ -92,7 +102,7 @@ class LoginPage extends React.Component {
                 onChangeHandler={this.handlerChange}
                 onSubmit={this.handlerSubmit}
                 errors={this.state.formErrors}
-                isComplete={this.state.isComplete}
+                isComplete={this.state.isLogin}
               />
             </div>
           </Col>

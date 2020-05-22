@@ -1,7 +1,7 @@
 exports.ensureAuthMiddleware = async (req, res, next) => {
   const token = req.headers.Authorization;
   if (!token) {
-    return res.status(401);
+    next(Error('No token provided'));
   }
   const user = await jwt.verify(token, "secret");
   req.user = user;
