@@ -42,9 +42,11 @@ const FormRegister = (props) => {
                 placeholder="Tên người dùng"
                 className="FormRegister__item"
                 onChange={onChangeHandler}
-                invalid={errors.username}
+                invalid={errors.username || errors.isExistsUsername}
               />
-              <FormFeedback invalid={true}>{errors.username}</FormFeedback>
+              <FormFeedback invalid={true}>
+                {errors.username || errors.isExistsUsername}
+              </FormFeedback>
             </InputGroup>
           </FormGroup>
           <FormGroup>
@@ -56,9 +58,9 @@ const FormRegister = (props) => {
                 placeholder="Email"
                 className="FormRegister__item"
                 onChange={onChangeHandler}
-                invalid={errors.email}
+                invalid={errors.email || errors.isExistsEmail}
               />
-              <FormFeedback invalid={true}>{errors.email}</FormFeedback>
+              <FormFeedback invalid={true}>{errors.isExistsEmail}</FormFeedback>
             </InputGroup>
           </FormGroup>
           <FormGroup>
@@ -75,7 +77,6 @@ const FormRegister = (props) => {
               <FormFeedback invalid={true}>{errors.password}</FormFeedback>
             </InputGroup>
           </FormGroup>
-          {isComplete && <p>Đăng kí thành công</p>}
           <Button
             type="submit"
             color="primary"

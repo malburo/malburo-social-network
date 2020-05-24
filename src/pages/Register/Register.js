@@ -2,22 +2,7 @@ import React from "react";
 import axios from "axios";
 import FormRegister from "../../components/Form/Register/FormRegister";
 import { Container, Row, Col } from "reactstrap";
-
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
-
-  // validate form errors being empty
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
-
-  return valid;
-};
+import API from "../../Services/api";
 class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
@@ -31,8 +16,9 @@ class RegisterPage extends React.Component {
         username: "",
         email: "",
         password: "",
+        isExistsEmail: "",
+        isExistsUsername: "",
       },
-      isComplete: false,
     };
   }
   handlerChange = (e) => {
@@ -63,40 +49,22 @@ class RegisterPage extends React.Component {
       [name]: value,
     });
   };
-  handlerSubmit = (e) => {
+  handlerSubmit = async (e) => {
     e.preventDefault();
     const { fullname, username, email, password } = this.state;
 
     let formErrors = { ...this.state.formErrors };
 
-    if (fullname === null) {
-      formErrors.fullname = "Xin hãy cung cấp họ và tên!";
-    }
-    if (username === null) {
-      formErrors.username = "Xin hãy cung cấp username!";
-    }
-    if (email === null) {
-      formErrors.email = "Xin hãy cung cấp email!";
-    }
-    if (password === null) {
-      formErrors.password = "Xin hãy cung cấp password!";
-    }
-    this.setState({
-      formErrors,
-    });
-
-    if (formValid(this.state)) {
-      const newUser = { fullname, username, email, password };
-      console.log(newUser);
-      axios
-        .post("http://localhost:8080/api/accounts/register", newUser)
-        .then((res) => console.log(res.data));
+    const newUser = { fullname, username, email, password };
+    try {
+      const data = await API.call("post", `accounts/register`, newUser);
+      console.log(data);
+    } catch (err) {
+      console.log(err.response);
+      formErrors = { ...err.response.data };
       this.setState({
-        isComplete: true,
+        formErrors,
       });
-      e.target.reset();
-    } else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
   render() {
@@ -109,7 +77,6 @@ class RegisterPage extends React.Component {
                 onChangeHandler={this.handlerChange}
                 onSubmit={this.handlerSubmit}
                 errors={this.state.formErrors}
-                isComplete={this.state.isComplete}
               />
             </div>
           </Col>

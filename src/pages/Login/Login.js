@@ -3,23 +3,8 @@ import axios from "axios";
 import FormLogin from "../../components/Form/Login/FormLogin";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
-
-  // validate form errors being empty
-  Object.values(formErrors).forEach((val) => {
-    val.length > 0 && (valid = false);
-  });
-
-  // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
-
-  return valid;
-};
-
+import { UserContext } from "../../contexts/UserContext";
+import API from "../../Services/api";
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +15,6 @@ class LoginPage extends React.Component {
         username: "",
         password: "",
       },
-      isLogin: false,
     };
   }
   handlerChange = (e) => {
@@ -39,7 +23,7 @@ class LoginPage extends React.Component {
     switch (name) {
       case "username":
         formErrors.username =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+          value.length < 6 ? "minimum 6 characaters required" : "";
         break;
       case "password":
         formErrors.password =
@@ -53,44 +37,30 @@ class LoginPage extends React.Component {
       [name]: value,
     });
   };
-  handlerSubmit = (e) => {
+
+  handlerSubmit = async (e) => {
     e.preventDefault();
+    const { onLogin } = this.context;
     const { username, password } = this.state;
-
     let formErrors = { ...this.state.formErrors };
+    const user = { username, password };
 
-    if (username === null) {
-      formErrors.username = "Xin hãy cung cấp username!";
-    }
-    if (password === null) {
-      formErrors.password = "Xin hãy cung cấp password!";
-    }
-    this.setState({
-      formErrors,
-    });
-
-    if (formValid(this.state)) {
-      const User = { username, password };
-      axios
-        .post("http://localhost:8080/api/accounts/login", User)
-        .then((res) => {
-          localStorage.accessToken = res.data.accessToken;
-          this.setState({
-            isLogin: true,
-          });
-        })
-        .catch((err) => {
-          formErrors = { ...err.response.data };
-          this.setState({
-            formErrors,
-          });
-        });
-    } else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+    try {
+      const data = await API.call("post", `accounts/login`, user);
+      localStorage.accessToken = data.accessToken;
+      localStorage.user = JSON.stringify(data.user);
+      // API.setToken(accessToken);
+      onLogin(data.user);
+    } catch (err) {
+      formErrors = { ...err.response.data };
+      this.setState({
+        formErrors,
+      });
     }
   };
   render() {
-    if (this.state.isLogin) {
+    const { state } = this.context;
+    if (state.isAuthenticate) {
       return <Redirect to={`/`} />;
     }
     return (
@@ -111,4 +81,5 @@ class LoginPage extends React.Component {
     );
   }
 }
+LoginPage.contextType = UserContext;
 export default LoginPage;

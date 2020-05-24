@@ -10,14 +10,11 @@ module.exports = async (req, res, next) => {
     if (!req.body.fullname) {
       errors.fullname = "Vui lòng cung cấp họ và tên";
     }
-    if (req.body.fullname.length > 30) {
-      errors.nameLength = "Tên của bạn quá dài";
-    }
     if (checkEmail.length) {
-      errors.emailIsExists = "Email này đã được sử dụng";
+      errors.isExistsEmail = "Email này đã được sử dụng";
     }
     if (checkUsername.length) {
-      errors.usernameIsExists = "username này đã được sử dụng";
+      errors.isExistsUsername = "Username này đã được sử dụng";
     }
     if (!req.body.email) {
       errors.email = "Vui lòng cung cấp email.";
@@ -26,7 +23,7 @@ module.exports = async (req, res, next) => {
       errors.password = "Vui lòng cung cấp password.";
     }
     if (Object.keys(errors).length !== 0) {
-      return res.json({ errors });
+      return res.status(400).json({ ...errors });
     }
     next();
   } catch (err) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./FormLogin.css";
 import { Link } from "react-router-dom";
 import {
@@ -9,6 +9,7 @@ import {
   InputGroup,
   FormFeedback,
 } from "reactstrap";
+
 const FormLogin = (props) => {
   const { onChangeHandler, onSubmit, errors, isComplete } = props;
   return (
@@ -44,7 +45,6 @@ const FormLogin = (props) => {
               <FormFeedback invalid={true}>{errors.password}</FormFeedback>
             </InputGroup>
           </FormGroup>
-          {isComplete && <p>Đăng Nhập thành công</p>}
           <Button color="primary" block className="FormLogin__btn">
             Đăng nhập
           </Button>
