@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import FormLogin from "../../components/Form/Login/FormLogin";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";

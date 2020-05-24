@@ -1,6 +1,6 @@
 import React from "react";
 import "./Search.css";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Input } from "reactstrap";
 const Search = (props) => {
   return (
     <div className="Search">

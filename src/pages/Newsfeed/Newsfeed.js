@@ -1,31 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router";
 import Header from "../../components/Header/Header";
 import PostCard from "../../components/Card/PostCard";
 import { Container, Row, Col } from "reactstrap";
-import { Redirect } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
-class NewsfeedPage extends React.Component {
-  constructor(props) {
-    super(props);
+const NewsfeedPage = () => {
+  const { state } = useContext(UserContext);
+  let history = useHistory();
+  if (!state.isAuthenticate) {
+    history.push("/accounts/login");
   }
-  render() {
-    const { state } = this.context;
-    if (!state.isAuthenticate) {
-      return <Redirect to={`/accounts/login`} />;
-    }
-    return (
-      <React.Fragment>
-        <Header />
-        <Container style={{ paddingTop: 100 }}>
-          <Row>
-            <Col>
-              <PostCard />
-            </Col>
-          </Row>
-        </Container>
-      </React.Fragment>
-    );
-  }
-}
-NewsfeedPage.contextType = UserContext;
+  return (
+    <React.Fragment>
+      <Header user={state.user} />
+      <Container style={{ paddingTop: 100 }}>
+        <Row>
+          <Col>
+            <PostCard />
+          </Col>
+        </Row>
+      </Container>
+    </React.Fragment>
+  );
+};
 export default NewsfeedPage;

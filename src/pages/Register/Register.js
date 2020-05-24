@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import FormRegister from "../../components/Form/Register/FormRegister";
 import { Container, Row, Col } from "reactstrap";
 import API from "../../Services/api";
@@ -58,9 +57,7 @@ class RegisterPage extends React.Component {
     const newUser = { fullname, username, email, password };
     try {
       const data = await API.call("post", `accounts/register`, newUser);
-      console.log(data);
     } catch (err) {
-      console.log(err.response);
       formErrors = { ...err.response.data };
       this.setState({
         formErrors,

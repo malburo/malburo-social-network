@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./FormLogin.css";
 import { Link } from "react-router-dom";
 import {
@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 
 const FormLogin = (props) => {
-  const { onChangeHandler, onSubmit, errors, isComplete } = props;
+  const { onChangeHandler, onSubmit, errors } = props;
   return (
     <div className="wrap">
       <div className="FormLogin">

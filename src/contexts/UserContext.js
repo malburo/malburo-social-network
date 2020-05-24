@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+
 export const UserContext = React.createContext();
 
 export class UserProvider extends React.Component {

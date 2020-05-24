@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import "./FormRegister.css";
 const FormRegister = (props) => {
-  const { onChangeHandler, onSubmit, errors, isComplete } = props;
+  const { onChangeHandler, onSubmit, errors } = props;
   return (
     <div className="wrap">
       <div className="FormRegister">
