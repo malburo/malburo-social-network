@@ -6,7 +6,6 @@ import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import ResetPasswordPage from "./pages/ResetPassword/ResetPassword";
 import NewsfeedPage from "./pages/Newsfeed/Newsfeed";
-import { setToken } from "./Services/api";
 import UserProvider from "./contexts/UserProvider";
 
 function App() {

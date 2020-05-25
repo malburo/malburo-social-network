@@ -4,22 +4,19 @@ import Icon from "../Icon/Icon";
 import Avatar from "../Avatar/Avatar";
 import Comment from "../Comment/Comment";
 const PostCard = (props) => {
+  const { post } = props;
   return (
     <div className="PostCard">
       <div className="d-flex justify-content-between PostCard__header">
         <Avatar
-          img="https://res.cloudinary.com/malburo/image/upload/v1588831342/trkuncv3xuxwjgn5a6wy.jpg"
+          img={post.userId.avatarImage}
           size="small"
-          username="nguyennkua_"
+          username={post.userId.username}
         />
         <Icon img="https://image.flaticon.com/icons/svg/512/512142.svg" />
       </div>
       <div className="PostCard__body">
-        <img
-          src="https://res.cloudinary.com/malburo/image/upload/v1588831342/trkuncv3xuxwjgn5a6wy.jpg"
-          className="PostCard__img"
-          alt="PostImage"
-        />
+        <img src={post.image} className="PostCard__img" alt="PostImage" />
       </div>
       <div className="PostCard__footer">
         <div className="d-flex justify-content-between PostCard__icon">
@@ -36,8 +33,8 @@ const PostCard = (props) => {
           <span>71 lượt thích</span>
         </div>
         <div>
-          <Comment username="thegioicuabao">
-            <span>Ratetiulie</span>
+          <Comment username={post.userId.username}>
+            <span>{post.body}</span>
           </Comment>
         </div>
       </div>

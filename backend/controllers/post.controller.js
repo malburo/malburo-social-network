@@ -8,19 +8,32 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-exports.getPost = async (req, res) => {
-  console.log(req.user);
-  // let post = await Post.find();
-  // res.json(user);
+exports.getPost = async (req, res, next) => {
+  try {
+    let posts = await Post.find().populate("userId").sort({ _id: -1 }).exec();
+    return res.status(200).json({ posts });
+  } catch (err) {
+    return next({ status: 400, message: err.message });
+  }
 };
 
-exports.post = async (req, res) => {
-  console.log(process.env.CLOUD_NAME);
-  // console.log(req.body.name, "asdsadasd", req.file);
-  cloudinary.uploader.upload(req.file.path, (error, result) => {
-    // req.body.postImg = result.url;
-    console.log(result.url);
-    // let post = await Post.find();
-    // res.json(user);
-  });
+exports.post = async (req, res, next) => {
+  const user = req.user;
+  try {
+    let image = null;
+    if (req.file) {
+      await cloudinary.uploader.upload(req.file.path, async (error, result) => {
+        image = result.url;
+      });
+      let newPost = await Post.create({
+        userId: user._id,
+        body: req.body.caption,
+        image,
+      });
+    } else {
+      console.log("upload fail");
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };

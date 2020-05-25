@@ -1,40 +1,52 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../../components/Header/Header";
 import PostCard from "../../components/Card/PostCard";
 import { Container, Row, Col } from "reactstrap";
 import UserContext from "../../contexts/UserContext";
-import axios from "axios";
 import Post from "../../components/Form/Post/Post";
-const NewsfeedPage = () => {
-  const { state } = useContext(UserContext);
-  // let history = useHistory();
-  // if (!state.isAuthenticate) {
-  //   history.push("/accounts/login");
-  // }
-  // axios
-  //   .get("http://localhost:8080/api/post")
-  //   .then(function (response) {
-  //     // handle success
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     // handle error
-  //     console.log(error);
-  //   });
-  return (
-    <React.Fragment>
-      <Header user={state.user} />
-      <Container style={{ paddingTop: 100 }}>
-        <Row>
-          <Post></Post>
-        </Row>
-        <Row>
-          <Col>
-            <PostCard />
-          </Col>
-        </Row>
-      </Container>
-    </React.Fragment>
-  );
-};
+import API from "../../Services/api";
+class NewsfeedPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: null,
+    };
+  }
+
+  async componentWillUpdate() {
+    try {
+      const result = await API.call("get", "post");
+      this.setState({
+        posts: result.posts,
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+  render() {
+    // const { state } = this.context;
+    // console.log(state);
+    const data = this.state.posts;
+    let posts;
+    if (data) {
+      posts = data.map((post) => {
+        return <PostCard post={post} />;
+      });
+    }
+    return (
+      <React.Fragment>
+        <Header user={this.state.user} />
+        <Container style={{ paddingTop: 100 }}>
+          <Row>
+            <Post />
+          </Row>
+          <Row>
+            <Col>{posts}</Col>
+          </Row>
+        </Container>
+      </React.Fragment>
+    );
+  }
+}
+NewsfeedPage.contextType = UserContext;
 export default NewsfeedPage;

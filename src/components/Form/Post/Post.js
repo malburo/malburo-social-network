@@ -1,27 +1,20 @@
 import React from "react";
-
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  FormFeedback,
-} from "reactstrap";
+import { Button, Form, FormGroup, Input, InputGroup } from "reactstrap";
 import API from "../../../Services/api";
+
 class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       postImg: null,
+      caption: null,
     };
   }
   handlerChange = (e) => {
-    console.log(e.target.value);
-    // const { name, value } = e.target;
-    // this.setState({
-    //   [name]: value,
-    // });
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
+    });
   };
   handlerFile = (e) => {
     const postImg = e.target.files[0];
@@ -30,11 +23,11 @@ class Post extends React.Component {
 
   handlerSubmit = async (e) => {
     e.preventDefault();
-    const { postImg } = this.state;
+    const { postImg, caption } = this.state;
     let formData = new FormData();
     formData.append("image", postImg);
-    formData.append("name", "baobaobaobao");
-    const data = await API.call("post", `post`, formData);
+    formData.append("caption", caption);
+    await API.call("post", `post`, formData);
   };
   render() {
     return (
