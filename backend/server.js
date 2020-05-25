@@ -1,12 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
-// const homeRouter = require("./routes/home.route");
 const accountRouter = require("./routes/account.route");
-
-require("dotenv").config();
+const postRouter = require("./routes/post.route");
 
 const app = express();
 
@@ -24,10 +23,10 @@ mongoose.connection.on("connected", () => {
 mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 
-// app.use("/api", homeRouter);
 app.use("/api/accounts", accountRouter);
+app.use("/api/post", postRouter);
 app.use(function (err, req, res, next) {
-  res.json(err);
+  res.status(400).json(err);
 });
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

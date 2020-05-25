@@ -1,22 +1,18 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import ResetPasswordPage from "./pages/ResetPassword/ResetPassword";
 import NewsfeedPage from "./pages/Newsfeed/Newsfeed";
-import { setToken } from "./Services/api"
-import { UserProvider } from "./contexts/UserContext";
-
-if (localStorage.accessToken) {
-  setToken(localStorage.accessToken);
-}
+import { setToken } from "./Services/api";
+import UserProvider from "./contexts/UserProvider";
 
 function App() {
   return (
-    <UserProvider>
-      <Router>
+    <Router>
+      <UserProvider>
         <div style={{ minHeight: "100vh" }} className="App">
           <Switch>
             <Route exact path="/" component={NewsfeedPage} />
@@ -31,8 +27,8 @@ function App() {
             <Route exact path="/accounts/edit" component={LoginPage} />
           </Switch>
         </div>
-      </Router>
-    </UserProvider>
+      </UserProvider>
+    </Router>
   );
 }
 

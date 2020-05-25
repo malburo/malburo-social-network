@@ -18,7 +18,7 @@ const Header = (props) => {
           <Col className="col-2">
             <div className="d-flex justify-content-between align-items-center">
               <Icon img="https://image.flaticon.com/icons/svg/1077/1077035.svg" />
-              <Avatar img={props.user.avatarImage} size="small" />
+              {/* <Avatar img={props.user.avatarImage} size="small" /> */}
             </div>
           </Col>
         </Row>

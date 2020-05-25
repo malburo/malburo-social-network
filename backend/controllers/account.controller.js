@@ -2,6 +2,16 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+exports.auth = async (req, res, next) => {
+  try {
+    return res.status(201).json({
+      user: req.user,
+    });
+  } catch (err) {
+    return next({ status: 400, message: err.message });
+  }
+};
+
 exports.register = async (req, res, next) => {
   try {
     const saltRounds = 10;
@@ -62,4 +72,3 @@ exports.resetPassword = async (req, res) => {
     res.status(400).json(`Error: ${e}`);
   }
 };
-

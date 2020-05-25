@@ -2,7 +2,7 @@ import React from "react";
 import FormLogin from "../../components/Form/Login/FormLogin";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-import { UserContext } from "../../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 import API from "../../Services/api";
 class LoginPage extends React.Component {
   constructor(props) {
@@ -47,8 +47,7 @@ class LoginPage extends React.Component {
     try {
       const data = await API.call("post", `accounts/login`, user);
       localStorage.accessToken = data.accessToken;
-      localStorage.user = JSON.stringify(data.user);
-      // API.setToken(accessToken);
+      API.setToken(data.accessToken);
       onLogin(data.user);
     } catch (err) {
       formErrors = { ...err.response.data };
