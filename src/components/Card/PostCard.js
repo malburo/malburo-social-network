@@ -3,8 +3,9 @@ import "./PostCard.css";
 import Icon from "../Icon/Icon";
 import Avatar from "../Avatar/Avatar";
 import Comment from "../Comment/Comment";
+
 const PostCard = (props) => {
-  const { post } = props;
+  const { post, onChange, onClick } = props;
   return (
     <div className="PostCard">
       <div className="d-flex justify-content-between PostCard__header">
@@ -36,11 +37,24 @@ const PostCard = (props) => {
           <Comment username={post.userId.username}>
             <span>{post.body}</span>
           </Comment>
+          {post.comments.map((comment) => {
+            return (
+              <Comment username={comment.userId.username}>
+                <span>{comment.body}</span>
+              </Comment>
+            );
+          })}
         </div>
       </div>
       <div className="new-comment d-flex justify-content-between align-items-center">
-        <input type="text" placeholder="Thêm bình luận..." />
-        <a href="#">Đăng</a>
+        <input
+          type="text"
+          placeholder="Thêm bình luận..."
+          onChange={onChange}
+        />
+        <button className="btn btn-light" onClick={onClick(post._id)}>
+          Đăng
+        </button>
       </div>
     </div>
   );

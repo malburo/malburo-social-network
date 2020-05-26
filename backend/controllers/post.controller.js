@@ -10,7 +10,11 @@ cloudinary.config({
 
 exports.getPost = async (req, res, next) => {
   try {
-    let posts = await Post.find().populate("userId").sort({ _id: -1 }).exec();
+    let posts = await Post.find()
+      .populate("userId")
+      .populate({ path: "comments", populate: { path: "userId" } })
+      .sort({ _id: -1 })
+      .exec();
     return res.status(200).json({ posts });
   } catch (err) {
     return next({ status: 400, message: err.message });
@@ -31,7 +35,7 @@ exports.post = async (req, res, next) => {
         image,
       });
     } else {
-      console.log("upload fail");
+      console.log("upload fail"); 
     }
   } catch (err) {
     console.log(err);

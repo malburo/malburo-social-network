@@ -9,5 +9,4 @@ const Auth = require("../middlewares/auth.middlewares");
 
 router.get("/", Auth.ensureAuthMiddleware, controller.getPost);
 router.post("/", Auth.ensureAuthMiddleware, upload.single("image"), controller.post);
-// router.get("/:username", controller.profile);
 module.exports = router;
