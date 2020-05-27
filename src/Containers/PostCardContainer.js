@@ -8,8 +8,14 @@ class PostCardContainer extends React.PureComponent {
     super(props);
     this.state = {
       newComment: "",
+      isLike: false,
     };
   }
+  handlerLike = (e) => {
+    this.setState({
+      isLike: !this.state.isLike,
+    });
+  };
   handlerChangeComment = (e) => {
     this.setState({
       newComment: e.target.value,
@@ -37,7 +43,9 @@ class PostCardContainer extends React.PureComponent {
             post={post}
             key={post._id}
             onChange={this.handlerChangeComment}
-            onClick={this.handlerSubmitComment}
+            onSubmitComment={this.handlerSubmitComment}
+            onLike={this.handlerLike}
+            isLike={this.state.isLike}
           />
         );
       });

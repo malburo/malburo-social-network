@@ -10,7 +10,7 @@ const PostSchema = new Schema({
   image: { type: String },
   createdAt: { type: Date, default: Date.now },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment", default: [] }],
-  likes: [{ type: Schema.Types.ObjectId, ref: "Like", default: [] }],
+  likes: [{ type: Schema.Types.ObjectId, ref: "User", default: [] }],
 });
 
 const Post = model("Post", PostSchema);

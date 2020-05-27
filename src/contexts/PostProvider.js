@@ -12,7 +12,6 @@ class PostProvider extends React.PureComponent {
   async componentDidMount() {
     try {
       const result = await API.call("get", "post");
-      console.log(result);
       this.setState({
         posts: result.posts,
       });
@@ -29,6 +28,9 @@ class PostProvider extends React.PureComponent {
       });
     };
   };
+  handlerLike = (quantity) => {
+    return (e) => {};
+  };
   handlerCreateNewComment = (newComment) => {
     return (e) => {
       const clonePosts = cloneDeep(this.state.posts);
@@ -39,12 +41,14 @@ class PostProvider extends React.PureComponent {
       });
     };
   };
+
   render() {
     return (
       <PostContext.Provider
         value={{
           posts: this.state.posts,
           onCreateNewPost: this.handlerCreateNewPost,
+          onLike: this.handlerLike,
           onCreateNewComment: this.handlerCreateNewComment,
         }}
       >

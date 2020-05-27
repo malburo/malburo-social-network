@@ -1,11 +1,16 @@
 import React from "react";
 import "./PostCard.css";
 import Icon from "../Icon/Icon";
+import Like from "../Icon/Like";
 import Avatar from "../Avatar/Avatar";
 import Comment from "../Comment/Comment";
 
 const PostCard = (props) => {
-  const { post, onChange, onClick } = props;
+  const { post, onChange, onSubmitComment, onLike, isLike } = props;
+  let likeIcon = isLike
+    ? "https://image.flaticon.com/icons/svg/1077/1077086.svg"
+    : "https://image.flaticon.com/icons/svg/1077/1077035.svg";
+
   return (
     <div className="PostCard">
       <div className="d-flex justify-content-between PostCard__header">
@@ -22,7 +27,7 @@ const PostCard = (props) => {
       <div className="PostCard__footer">
         <div className="d-flex justify-content-between PostCard__icon">
           <div className="PostCard__icon-list">
-            <Icon img="https://image.flaticon.com/icons/svg/1077/1077035.svg" />
+            <Like img={likeIcon} onClicked={onLike} />
             <Icon img="https://image.flaticon.com/icons/svg/2462/2462719.svg" />
             <Icon img="https://image.flaticon.com/icons/png/512/1932/1932893.png" />
           </div>
@@ -52,7 +57,7 @@ const PostCard = (props) => {
           placeholder="Thêm bình luận..."
           onChange={onChange}
         />
-        <button className="btn btn-light" onClick={onClick(post._id)}>
+        <button className="btn btn-light" onClick={onSubmitComment(post._id)}>
           Đăng
         </button>
       </div>
