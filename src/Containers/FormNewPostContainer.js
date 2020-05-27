@@ -28,8 +28,8 @@ class FormNewPostContainer extends React.PureComponent {
     let formData = new FormData();
     formData.append("image", postImg);
     formData.append("caption", caption);
-    const newPost = await API.call("post", `post`, formData);
-    onCreateNewPost(newPost);
+    const res = await API.call("post", `post`, formData);
+    onCreateNewPost(res.newPost)();
   };
   render() {
     return (

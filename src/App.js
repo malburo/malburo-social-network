@@ -10,7 +10,7 @@ import UserProvider from "./contexts/UserProvider";
 import API from "./Services/api";
 
 function App() {
-  // add default header token with axios
+  // Add default header token with axios
   if (localStorage.accessToken) {
     API.setToken(localStorage.accessToken);
   }

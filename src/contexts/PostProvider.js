@@ -12,6 +12,7 @@ class PostProvider extends React.PureComponent {
   async componentDidMount() {
     try {
       const result = await API.call("get", "post");
+      console.log(result);
       this.setState({
         posts: result.posts,
       });
@@ -22,8 +23,10 @@ class PostProvider extends React.PureComponent {
 
   handlerCreateNewPost = (newPost) => {
     return (e) => {
-      console.log(newPost);
-      const clonePosts = cloneDeep(this.state.posts);
+      const clonePosts = [newPost, ...this.state.posts];
+      this.setState({
+        posts: clonePosts,
+      });
     };
   };
   handlerCreateNewComment = (newComment) => {

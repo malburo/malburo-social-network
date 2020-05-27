@@ -34,10 +34,12 @@ exports.post = async (req, res, next) => {
         body: req.body.caption,
         image,
       });
+      newPost._doc.userId = req.user;
+      return res.status(200).json({ newPost });
     } else {
-      console.log("upload fail"); 
+      console.log("upload fail");
     }
   } catch (err) {
-    console.log(err);
+    return next({ status: 400, message: err.message });
   }
 };

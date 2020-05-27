@@ -26,7 +26,9 @@ mongoose.set("useCreateIndex", true);
 app.use("/api/accounts", accountRouter);
 app.use("/api/post", postRouter);
 app.use("/api/comment", commentRouter);
-app.use(function (err, req, res, next) {
+app.use("/api/like", commentRouter);
+
+app.use((err, req, res, next) => {
   res.status(400).json(err);
 });
 const port = process.env.PORT || 8080;

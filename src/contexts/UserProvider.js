@@ -1,9 +1,8 @@
 import React from "react";
-import axios from "axios";
 import { withRouter } from "react-router-dom";
 import UserContext from "./UserContext";
 import API from "../Services/api";
-class UserProvider extends React.PureComponent {
+class UserProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,9 +12,9 @@ class UserProvider extends React.PureComponent {
   }
   async componentDidMount() {
     try {
-      const data = await axios.get("http://localhost:8080/api/accounts/auth");
+      const data = await API.call("get", "accounts/auth");
       this.setState({
-        user: data.data.user,
+        user: data.user,
         isAuthenticate: true,
       });
     } catch (err) {
