@@ -2,7 +2,7 @@ import React from "react";
 import FormRegister from "../../components/Form/Register/FormRegister";
 import { Container, Row, Col } from "reactstrap";
 import API from "../../Services/api";
-class RegisterPage extends React.Component {
+class RegisterPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

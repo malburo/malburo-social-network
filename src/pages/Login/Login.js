@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import UserContext from "../../contexts/UserContext";
 import API from "../../Services/api";
-class LoginPage extends React.Component {
+class LoginPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

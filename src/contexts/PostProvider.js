@@ -2,7 +2,7 @@ import React from "react";
 import { cloneDeep } from "lodash";
 import PostContext from "./UserContext";
 import API from "../Services/api";
-class PostProvider extends React.Component {
+class PostProvider extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

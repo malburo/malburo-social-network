@@ -3,7 +3,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import UserContext from "./UserContext";
 import API from "../Services/api";
-class UserProvider extends React.Component {
+class UserProvider extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

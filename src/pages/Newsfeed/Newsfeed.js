@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 import Post from "../../components/Form/Post/Post";
 import API from "../../Services/api";
 import PostCardContainer from "../../Containers/PostCardContainer";
-class NewsfeedPage extends React.Component {
+class NewsfeedPage extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
