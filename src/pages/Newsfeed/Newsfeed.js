@@ -1,19 +1,17 @@
 import React from "react";
 import Header from "../../components/Header/Header";
-import PostCard from "../../components/Card/PostCard";
 import { Container, Row, Col } from "reactstrap";
-import UserContext from "../../contexts/UserContext";
-import Post from "../../components/Form/Post/Post";
-import API from "../../Services/api";
+import FormNewPostContainer from "../../Containers/PostCardContainer";
 import PostCardContainer from "../../Containers/PostCardContainer";
+import PostProvider from "../../contexts/PostProvider";
 class NewsfeedPage extends React.PureComponent {
   render() {
     return (
-      <React.Fragment>
+      <PostProvider>
         <Header />
         <Container style={{ paddingTop: 100 }}>
           <Row>
-            <Post />
+            <FormNewPostContainer />
           </Row>
           <Row>
             <Col>
@@ -21,9 +19,9 @@ class NewsfeedPage extends React.PureComponent {
             </Col>
           </Row>
         </Container>
-      </React.Fragment>
+      </PostProvider>
     );
   }
 }
-NewsfeedPage.contextType = UserContext;
+
 export default NewsfeedPage;

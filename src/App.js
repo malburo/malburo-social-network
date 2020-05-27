@@ -8,7 +8,9 @@ import ResetPasswordPage from "./pages/ResetPassword/ResetPassword";
 import NewsfeedPage from "./pages/Newsfeed/Newsfeed";
 import UserProvider from "./contexts/UserProvider";
 import API from "./Services/api";
+
 function App() {
+  // add default header token with axios
   if (localStorage.accessToken) {
     API.setToken(localStorage.accessToken);
   }

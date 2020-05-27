@@ -1,6 +1,6 @@
 import React from "react";
 import { cloneDeep } from "lodash";
-import PostContext from "./UserContext";
+import PostContext from "./PostContext";
 import API from "../Services/api";
 class PostProvider extends React.PureComponent {
   constructor(props) {

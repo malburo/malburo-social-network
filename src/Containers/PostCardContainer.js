@@ -24,17 +24,17 @@ class PostCardContainer extends React.PureComponent {
         postId,
       };
       const res = await API.call("post", `comment`, newComment);
-      onCreateNewComment(res);
+      onCreateNewComment(res)();
     };
   };
   render() {
     const { posts } = this.context;
     let postsList;
     if (posts) {
-      postsList = data.map((post) => {
+      postsList = posts.map((post) => {
         return (
           <PostCard
-            post={posts}
+            post={post}
             key={post._id}
             onChange={this.handlerChangeComment}
             onClick={this.handlerSubmitComment}
