@@ -1,24 +1,14 @@
 import React from "react";
-import { cloneDeep } from "lodash";
 import API from "../Services/api";
 import PostCard from "../components/Card/PostCard";
+import PostContext from "../contexts/PostContext";
+
 class PostCardContainer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
       newComment: "",
     };
-  }
-  async componentDidMount() {
-    try {
-      const result = await API.call("get", "post");
-      this.setState({
-        posts: result.posts,
-      });
-    } catch (err) {
-      console.log(err.message);
-    }
   }
   handlerChangeComment = (e) => {
     this.setState({
@@ -28,27 +18,23 @@ class PostCardContainer extends React.PureComponent {
 
   handlerSubmitComment = (postId) => {
     return async (e) => {
+      const { onCreateNewComment } = this.context;
       const newComment = {
         body: this.state.newComment,
         postId,
       };
       const res = await API.call("post", `comment`, newComment);
-      const clonePosts = cloneDeep(this.state.posts);
-      const post = clonePosts.find((item) => item._id === res.postId);
-      post.comments.push(res);
-      this.setState({
-        posts: clonePosts,
-      });
+      onCreateNewComment(res);
     };
   };
   render() {
-    const data = this.state.posts;
-    let posts;
-    if (data) {
-      posts = data.map((post) => {
+    const { posts } = this.context;
+    let postsList;
+    if (posts) {
+      postsList = data.map((post) => {
         return (
           <PostCard
-            post={post}
+            post={posts}
             key={post._id}
             onChange={this.handlerChangeComment}
             onClick={this.handlerSubmitComment}
@@ -56,8 +42,8 @@ class PostCardContainer extends React.PureComponent {
         );
       });
     }
-    return <React.Fragment>{posts}</React.Fragment>;
+    return <React.Fragment>{postsList}</React.Fragment>;
   }
 }
-
+PostCardContainer.contextType = PostContext;
 export default PostCardContainer;

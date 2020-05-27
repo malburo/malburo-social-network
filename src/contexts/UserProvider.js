@@ -11,10 +11,7 @@ class UserProvider extends React.Component {
       isAuthenticate: false,
     };
   }
-  async componentWillMount() {
-    if (localStorage.accessToken) {
-      API.setToken(localStorage.accessToken);
-    }
+  async componentDidMount() {
     try {
       const data = await axios.get("http://localhost:8080/api/accounts/auth");
       this.setState({

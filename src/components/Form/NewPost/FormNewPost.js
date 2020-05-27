@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, FormGroup, Input, InputGroup } from "reactstrap";
 import API from "../../../Services/api";
 
-class Post extends React.Component {
+class FormNewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,4 +68,4 @@ class Post extends React.Component {
     );
   }
 }
-export default Post;
+export default FormNewPost;
