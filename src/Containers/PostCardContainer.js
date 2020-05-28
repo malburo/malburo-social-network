@@ -11,10 +11,17 @@ class PostCardContainer extends React.PureComponent {
       isLike: false,
     };
   }
-  handlerLike = (e) => {
-    this.setState({
-      isLike: !this.state.isLike,
-    });
+  handlerLike = (postId) => {
+    return async (e) => {
+      const { onLike } = this.context;
+      const newLike = { postId, isLike: this.state.isLike };
+      const res = await API.call("post", `like`, newLike);
+
+      this.setState({
+        isLike: res.isLike,
+      });
+      onLike(postId, res.userId, res.isLike)();
+    };
   };
   handlerChangeComment = (e) => {
     this.setState({
@@ -45,7 +52,6 @@ class PostCardContainer extends React.PureComponent {
             onChange={this.handlerChangeComment}
             onSubmitComment={this.handlerSubmitComment}
             onLike={this.handlerLike}
-            isLike={this.state.isLike}
           />
         );
       });

@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const accountRouter = require("./routes/account.route");
 const postRouter = require("./routes/post.route");
 const commentRouter = require("./routes/comment.route");
+const likeRouter = require("./routes/like.route");
 const app = express();
 
 app.use(cors());
@@ -26,7 +27,7 @@ mongoose.set("useCreateIndex", true);
 app.use("/api/accounts", accountRouter);
 app.use("/api/post", postRouter);
 app.use("/api/comment", commentRouter);
-app.use("/api/like", commentRouter);
+app.use("/api/like", likeRouter);
 
 app.use((err, req, res, next) => {
   res.status(400).json(err);

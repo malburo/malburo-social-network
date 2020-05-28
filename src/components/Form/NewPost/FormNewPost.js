@@ -5,12 +5,7 @@ const FormNewPost = (props) => {
   const { onChangeCaption, onChangeFile, onSubmit } = props;
   return (
     <div className="Post">
-      <Form
-        className="FormLogin__input"
-        onSubmit={onSubmit}
-        method="POST"
-        enctype="multipart/form-data"
-      >
+      <Form className="FormLogin__input" onSubmit={onSubmit} method="POST">
         <FormGroup>
           <InputGroup>
             <Input
