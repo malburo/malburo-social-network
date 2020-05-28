@@ -7,7 +7,7 @@ import Comment from "../Comment/Comment";
 import UserContext from "../../contexts/UserContext";
 const PostCard = (props) => {
   const { state } = useContext(UserContext);
-  const { post, onChange, onSubmitComment, onLike } = props;
+  const { post, onChange, onSubmitComment, onLike, newComment } = props;
   let likeIcon = "https://image.flaticon.com/icons/svg/1077/1077035.svg";
   if (state.user) {
     likeIcon =
@@ -58,16 +58,16 @@ const PostCard = (props) => {
           })}
         </div>
       </div>
-      <div className="new-comment d-flex justify-content-between align-items-center">
-        <input
-          type="text"
-          placeholder="Thêm bình luận..."
-          onChange={onChange}
-        />
-        <button className="btn btn-light" onClick={onSubmitComment(post._id)}>
-          Đăng
-        </button>
-      </div>
+      <form onSubmit={onSubmitComment(post._id)}>
+        <div className="new-comment d-flex justify-content-between align-items-center">
+          <input
+            type="text"
+            placeholder="Thêm bình luận..."
+            onChange={onChange}
+          />
+          <button className="btn btn-light">Đăng</button>
+        </div>
+      </form>
     </div>
   );
 };

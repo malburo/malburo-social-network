@@ -31,12 +31,17 @@ class PostCardContainer extends React.PureComponent {
 
   handlerSubmitComment = (postId) => {
     return async (e) => {
+      e.preventDefault();
+      e.target.reset();
       const { onCreateNewComment } = this.context;
       const newComment = {
         body: this.state.newComment,
         postId,
       };
       const res = await API.call("post", `comment`, newComment);
+      this.setState({
+        newComment: "",
+      });
       onCreateNewComment(res)();
     };
   };
@@ -52,6 +57,7 @@ class PostCardContainer extends React.PureComponent {
             onChange={this.handlerChangeComment}
             onSubmitComment={this.handlerSubmitComment}
             onLike={this.handlerLike}
+            newComment={this.state.newComment}
           />
         );
       });
