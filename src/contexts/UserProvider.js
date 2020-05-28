@@ -32,12 +32,21 @@ class UserProvider extends React.Component {
       isAuthenticate: true,
     });
   };
+  onLogout = (e) => {
+    localStorage.removeItem("accessToken");
+    this.setState({
+      user: null,
+      isAuthenticate: false,
+    });
+    this.props.history.push("/accounts/login");
+  };
   render() {
     return (
       <UserContext.Provider
         value={{
           state: this.state,
           onLogin: this.onLogin,
+          onLogout: this.onLogout
         }}
       >
         {this.props.children}

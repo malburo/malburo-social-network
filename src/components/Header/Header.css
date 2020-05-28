@@ -5,8 +5,11 @@
   min-width: 100vw;
   background-color: #fff;
   z-index: 999;
-  
 }
 .header h3 {
   margin: 0;
+}
+
+.logout {
+  cursor: pointer;
 }

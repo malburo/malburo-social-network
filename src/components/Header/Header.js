@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 import "./Header.css";
 import { Container, Row, Col } from "reactstrap";
 const Header = (props) => {
-  const { state } = useContext(UserContext);
+  const { state, onLogout } = useContext(UserContext);
   return (
     <header className="header d-flex align-items-center justify-content-between">
       <Container>
@@ -19,7 +19,9 @@ const Header = (props) => {
           </Col>
           <Col className="col-2">
             <div className="d-flex justify-content-between align-items-center">
-              <Icon img="https://image.flaticon.com/icons/svg/1077/1077035.svg" />
+              <span onClick={onLogout} className="logout">
+                Logout
+              </span>
               {state.user && (
                 <Avatar img={state.user.avatarImage} size="small" />
               )}
