@@ -41,7 +41,7 @@ const PostCard = (props) => {
           </div>
         </div>
         <div className="d-flex align-items-center">
-          <span>71 lượt thích</span>
+          <span>{post.likes.length} lượt thích</span>
         </div>
         <div>
           <Comment username={post.userId.username}>
