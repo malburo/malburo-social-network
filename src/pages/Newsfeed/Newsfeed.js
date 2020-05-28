@@ -11,7 +11,9 @@ class NewsfeedPage extends React.PureComponent {
         <Header />
         <Container style={{ paddingTop: 100 }}>
           <Row>
-            <FormNewPostContainer />
+            <Col>
+              <FormNewPostContainer />
+            </Col>
           </Row>
           <Row>
             <Col>

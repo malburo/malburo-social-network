@@ -7,7 +7,8 @@ class FormNewPostContainer extends React.PureComponent {
     super(props);
     this.state = {
       postImg: null,
-      caption: null,
+      caption: "",
+      isPending: false,
     };
   }
   handlerChange = (e) => {
@@ -23,12 +24,20 @@ class FormNewPostContainer extends React.PureComponent {
 
   handlerSubmit = async (e) => {
     e.preventDefault();
+    this.setState({
+      isPending: true,
+    });
     const { onCreateNewPost } = this.context;
     const { postImg, caption } = this.state;
     let formData = new FormData();
     formData.append("image", postImg);
     formData.append("caption", caption);
     const res = await API.call("post", `post`, formData);
+
+    this.setState({
+      isPending: false,
+      caption: "",
+    });
     onCreateNewPost(res.newPost)();
   };
   render() {
@@ -36,7 +45,9 @@ class FormNewPostContainer extends React.PureComponent {
       <FormNewPost
         onChangeCaption={this.handlerChange}
         onChangeFile={this.handlerFile}
-        onSubmit={this.handlerSubmit}
+        onSubmitForm={this.handlerSubmit}
+        isPending={this.state.isPending}
+        caption={this.state.caption}
       />
     );
   }

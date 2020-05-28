@@ -12,7 +12,7 @@ const PostCard = (props) => {
   if (state.user) {
     likeIcon =
       post.likes.indexOf(state.user._id) !== -1
-        ? "https://image.flaticon.com/icons/svg/1077/1077086.svg"
+        ? "https://image.flaticon.com/icons/svg/1076/1076984.svg"
         : "https://image.flaticon.com/icons/svg/1077/1077035.svg";
   }
 
@@ -41,12 +41,14 @@ const PostCard = (props) => {
           </div>
         </div>
         <div className="d-flex align-items-center">
-          <span>{post.likes.length} lượt thích</span>
+          {post.likes.length > 0 && <span>{post.likes.length} lượt thích</span>}
         </div>
         <div>
-          <Comment username={post.userId.username}>
-            <span>{post.body}</span>
-          </Comment>
+          {post.body !== "null" && (
+            <Comment username={post.userId.username}>
+              <span>{post.body}</span>
+            </Comment>
+          )}
           {post.comments.map((comment) => {
             return (
               <Comment username={comment.userId.username}>
