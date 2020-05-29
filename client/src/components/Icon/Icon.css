@@ -1,0 +1,9 @@
+.Icon {
+  width: 24px;
+  height: 24px;
+  cursor: no-drop;
+}
+
+.Icon-like {
+  cursor: pointer;
+}

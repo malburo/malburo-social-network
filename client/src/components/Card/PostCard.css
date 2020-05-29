@@ -1,0 +1,36 @@
+.PostCard {
+  width: 600px;
+  border: 1px solid #efefef;
+  margin-bottom: 50px;
+  background-color: #fff;
+}
+.PostCard__img {
+  width: 600px;
+  height: 600px;
+}
+
+.PostCard__header,
+.PostCard__footer {
+  margin: 16px;
+}
+.PostCard__icon {
+  margin-bottom: 10px;
+}
+.PostCard__icon-list {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.new-comment {
+  padding: 4px 16px;
+  width: 100%;
+  border: 1px solid #efefef;
+}
+.new-comment input {
+  flex: 1;
+  padding: 8px 10px 8px 0;
+  border: 0;
+}
+.new-comment input:focus {
+  outline: none;
+}
