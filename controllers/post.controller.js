@@ -1,5 +1,5 @@
 const Post = require("../models/post.model");
-
+var fs = require("fs");
 let cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -34,6 +34,7 @@ exports.post = async (req, res, next) => {
         body: req.body.caption,
         image,
       });
+      fs.unlinkSync(req.file.path);
       newPost._doc.userId = req.user;
       return res.status(200).json({ newPost });
     } else {

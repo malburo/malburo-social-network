@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const accountRouter = require("./routes/account.route");
 const postRouter = require("./routes/post.route");
@@ -29,6 +30,12 @@ app.use("/api/post", postRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/like", likeRouter);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 app.use((err, req, res, next) => {
   res.status(400).json(err);
 });
