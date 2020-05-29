@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import Search from "../Search/Search";
-import Icon from "../Icon/Icon";
 import Avatar from "../Avatar/Avatar";
 import UserContext from "../../contexts/UserContext";
 import "./Header.css";
 import { Container, Row, Col } from "reactstrap";
-const Header = (props) => {
+const Header = () => {
   const { state, onLogout } = useContext(UserContext);
   return (
     <header className="header d-flex align-items-center justify-content-between">

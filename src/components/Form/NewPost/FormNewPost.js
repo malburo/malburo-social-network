@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, FormGroup, Input, InputGroup } from "reactstrap";
 import { Spinner } from "reactstrap";
-import { CustomInput, Label } from "reactstrap";
+import { CustomInput } from "reactstrap";
 import "./FormNewPost.css";
 const FormNewPost = (props) => {
   const {

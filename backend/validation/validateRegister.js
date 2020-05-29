@@ -8,19 +8,22 @@ module.exports = async (req, res, next) => {
     ]);
     let errors = {};
     if (!req.body.fullname) {
-      errors.fullname = "Vui lòng cung cấp họ và tên";
+      errors.fullname = "Vui lòng cung cấp họ và tên.";
     }
-    if (checkEmail.length) {
-      errors.isExistsEmail = "Email này đã được sử dụng";
-    }
-    if (checkUsername.length) {
-      errors.isExistsUsername = "Username này đã được sử dụng";
+    if (!req.body.username) {
+      errors.username = "Vui lòng cung cấp username.";
     }
     if (!req.body.email) {
       errors.email = "Vui lòng cung cấp email.";
     }
     if (!req.body.password) {
       errors.password = "Vui lòng cung cấp password.";
+    }
+    if (checkEmail.length) {
+      errors.isExistsEmail = "Email này đã được sử dụng";
+    }
+    if (checkUsername.length) {
+      errors.isExistsUsername = "Username này đã được sử dụng";
     }
     if (Object.keys(errors).length !== 0) {
       return res.status(400).json({ ...errors });

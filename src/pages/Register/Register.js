@@ -18,6 +18,7 @@ class RegisterPage extends React.PureComponent {
         isExistsEmail: "",
         isExistsUsername: "",
       },
+      isSuccess: false,
     };
   }
   handlerChange = (e) => {
@@ -50,13 +51,17 @@ class RegisterPage extends React.PureComponent {
   };
   handlerSubmit = async (e) => {
     e.preventDefault();
+    e.target.reset();
     const { fullname, username, email, password } = this.state;
 
     let formErrors = { ...this.state.formErrors };
 
     const newUser = { fullname, username, email, password };
     try {
-      const data = await API.call("post", `accounts/register`, newUser);
+      await API.call("post", `accounts/register`, newUser);
+      this.setState({
+        isSuccess: true,
+      });
     } catch (err) {
       formErrors = { ...err.response.data };
       this.setState({
@@ -74,6 +79,7 @@ class RegisterPage extends React.PureComponent {
                 onChangeHandler={this.handlerChange}
                 onSubmit={this.handlerSubmit}
                 errors={this.state.formErrors}
+                isSuccess={this.state.isSuccess}
               />
             </div>
           </Col>

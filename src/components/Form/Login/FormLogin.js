@@ -28,7 +28,7 @@ const FormLogin = (props) => {
                 onChange={onChangeHandler}
                 invalid={errors.username}
               />
-              <FormFeedback invalid={true}>{errors.username}</FormFeedback>
+              <FormFeedback invalid="true">{errors.username}</FormFeedback>
             </InputGroup>
           </FormGroup>
           <FormGroup>
@@ -42,7 +42,7 @@ const FormLogin = (props) => {
                 onChange={onChangeHandler}
                 invalid={errors.password}
               />
-              <FormFeedback invalid={true}>{errors.password}</FormFeedback>
+              <FormFeedback invalid="true">{errors.password}</FormFeedback>
             </InputGroup>
           </FormGroup>
           <Button color="primary" block className="FormLogin__btn">

@@ -7,7 +7,7 @@ import Comment from "../Comment/Comment";
 import UserContext from "../../contexts/UserContext";
 const PostCard = (props) => {
   const { state } = useContext(UserContext);
-  const { post, onChange, onSubmitComment, onLike, newComment } = props;
+  const { post, onChange, onSubmitComment, onLike } = props;
   let likeIcon = "https://image.flaticon.com/icons/svg/1077/1077035.svg";
   if (state.user) {
     likeIcon =

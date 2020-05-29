@@ -9,8 +9,9 @@ import {
   InputGroup,
 } from "reactstrap";
 import "./FormRegister.css";
+import { Alert } from "reactstrap";
 const FormRegister = (props) => {
-  const { onChangeHandler, onSubmit, errors } = props;
+  const { onChangeHandler, onSubmit, errors, isSuccess } = props;
   return (
     <div className="wrap">
       <div className="FormRegister">
@@ -30,7 +31,7 @@ const FormRegister = (props) => {
                 onChange={onChangeHandler}
                 invalid={errors.fullname}
               />
-              <FormFeedback invalid={true}>{errors.fullname}</FormFeedback>
+              <FormFeedback invalid="true">{errors.fullname}</FormFeedback>
             </InputGroup>
           </FormGroup>
           <FormGroup>
@@ -44,7 +45,7 @@ const FormRegister = (props) => {
                 onChange={onChangeHandler}
                 invalid={errors.username || errors.isExistsUsername}
               />
-              <FormFeedback invalid={true}>
+              <FormFeedback invalid="true">
                 {errors.username || errors.isExistsUsername}
               </FormFeedback>
             </InputGroup>
@@ -60,7 +61,9 @@ const FormRegister = (props) => {
                 onChange={onChangeHandler}
                 invalid={errors.email || errors.isExistsEmail}
               />
-              <FormFeedback invalid={true}>{errors.isExistsEmail}</FormFeedback>
+              <FormFeedback invalid="true">
+                {errors.email || errors.isExistsEmail}
+              </FormFeedback>
             </InputGroup>
           </FormGroup>
           <FormGroup>
@@ -74,7 +77,7 @@ const FormRegister = (props) => {
                 onChange={onChangeHandler}
                 invalid={errors.password}
               />
-              <FormFeedback invalid={true}>{errors.password}</FormFeedback>
+              <FormFeedback invalid="true">{errors.password}</FormFeedback>
             </InputGroup>
           </FormGroup>
           <Button
@@ -85,6 +88,12 @@ const FormRegister = (props) => {
           >
             Đăng Ký
           </Button>
+          {isSuccess && (
+            <Alert color="success">
+              Đăng kí thành công - <Link to="/accounts/login">Đăng nhập</Link>
+            </Alert>
+          )}
+
           <div className="roles">
             <p>
               Bằng cách đăng ký, bạn đồng ý với Điều khoản, Chính sách dữ liệu
