@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = "https://malburo-social-network.herokuapp.com/api";
+const host = "http://localhost:8080/api";
 
 export const setToken = (token) => {
   if (token) {
