@@ -18,6 +18,7 @@ function App() {
     <Router>
       <UserProvider>
         <div style={{ minHeight: "100vh" }} className="App">
+          
           <Switch>
             <Route exact path="/" component={NewsfeedPage} />
             <Route exact path="/:username" component={LoginPage} />
